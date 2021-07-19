@@ -1,0 +1,290 @@
+{% extends 'app/dashbase.html' %}
+{% load static %}
+{% block title %}Customer Profile Form {% endblock title %}
+{% block main-content %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+ <!--main content start-->
+ <section id="main-content">
+    <section class="wrapper">
+      {%if perms.ADMIN%}
+
+        <div class="row">
+            <div class="col-lg-12">
+              <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
+              <ol class="breadcrumb">
+              <!--  <li><i class="fa fa-home"></i><a href="">Home</a></li>
+                <li><i class="fa fa-laptop"></i>Dashboard</li>-->
+              </ol>
+            </div>
+          </div>
+          
+            <!--/.col-->
+
+
+            <div class="row">
+                
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="info-box blue-bg">
+                      <i class="fa fa-cloud-download"></i>
+                      <div class="count">{{orderscom}}</div>
+                      <div class="title">Complete Orders</div>
+                    </div>
+                    <!--/.info-box-->
+                  </div>
+                                <!--/.col-->
+                              
+
+
+                <!----->
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                  <div class="info-box blue-bg">
+                    <i class="fa fa-cloud-download"></i>
+                    <div class="count">{{order}}</div>
+                    <div class="title">order</div>
+                  </div>
+                  <!--/.info-box-->
+                </div>
+                <!--/.col-->
+
+
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="info-box blue-bg">
+                      <i class="fa fa-cloud-download"></i>
+                      <div class="count">{{orders}}</div>
+                      <div class="title"> NEW Ordersorders</div>
+                    </div>
+                    <!--/.info-box-->
+                  </div>
+
+  
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+              <div class="info-box brown-bg">
+                <i class="fa fa-shopping-cart"></i>
+                <div class="count">{{customer}}</div>
+                <div class="title">customer</div>
+              </div>
+              <!--/.info-box-->
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="info-box blue-bg">
+                  <i class="fa fa-cloud-download"></i>
+                  <div class="count">{{total_services}}</div>
+                  <div class="title">Total Services</div>
+                </div>
+                <!--/.info-box-->
+              </div>
+              
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+              <div class="info-box blue-bg">
+                <i class="fa fa-cloud-download"></i>
+                <div class="count">{{msg_count}}</div>
+                <div class="title">Total Message Who is unread</div>
+              </div>
+              <!--/.info-box-->
+            </div>
+
+          
+
+
+</div>
+
+
+
+
+<div class="row">
+
+  <div class="col-lg-10 col-md-12 " >
+
+    
+        <!-- project team & activity start -->
+        <div class="row">
+          <div class=" portlets">
+            <!-- Widget -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="pull-left text-center">Contact Us Message</div>
+                <div class="widget-icons pull-right">
+                  <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
+                  <a href="#" class="wclose"><i class="fa fa-times"></i></a>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+
+              <div class="panel-body">
+                <!-- Widget content -->
+                <div class="padd sscroll">
+              
+                  <ul class="chats">
+            {% if msg %}    
+                  {% for m in msg %}
+                      <!-- Chat by us. Use the class "by-me". -->
+                     <li class="by-me">
+                      <!-- Use the class "pull-left" in avatar -->
+                      <div class="avatar pull-left">
+                        
+                       </div>
+                      
+                
+                   
+                
+                       <div class="chat-content">
+                        <!-- In meta area, first include "name" and then "time" -->
+                        <div class="chat-meta">Name:<b class="text-dark">  {{m.name}} </b><span class="pull-right">{{m.msg_time}}</span></div>
+                         
+                        <p class="text-primary font-italic">Email: {{m.email}}</p>  
+                       <p class="text-wrap">Subject: {{m.Subject}}</p> 
+                      <div class="col-lg-6 col-md-6 col-sm-3"><p class="text-wrap">Message: {{m.description}}</p> </div> 
+                        <div class="clearfix"></div>
+                        <div class="text-right"> <small><p class="text-left" >Phone #: {{m.phone}}</p></small>
+                         <a href="{% url 'read' m.id %}" >
+    <button class=" btn btn-success btn-sm" >
+      Read
+    </button>
+</a> 
+</div>
+                          
+                          
+                          
+                       </div>
+                      
+                      </li>
+                    
+                    {% endfor %}
+
+
+              {%else%}
+   
+
+                    <h4 class="text-center alert alert-danger">NO New Massages Comes!!</h4>
+              {%endif%}
+
+
+                
+
+                  
+                  </ul>
+
+
+                </div>
+                <!-- Widget footer -->
+                
+              </div>
+
+
+            </div>
+          </div>
+
+          
+        </div><br><br>
+
+
+
+
+    
+  </div>
+  <div class="col-md-2 ">
+    
+
+
+  </div>
+
+</div>
+<!--/col-->
+
+
+
+
+
+
+
+
+
+<!---chart-->
+
+        <!-- project team & activity start -->
+        <div class="row">
+          <div class="col-md-4 portlets">
+            <!-- Widget -->
+            
+          </div>
+
+          <div class="col-lg-8">
+            <!--Project Activity start-->
+            <section class="panel">
+              <div class="panel-body progress-panel">
+                <div class="row">
+                  <div class="col-lg-8 task-progress pull-left">
+                    <h1>To Do Everyday</h1>
+                  </div>
+                  <div class="col-lg-4">
+                    <span class="profile-ava pull-right">
+                                        <img alt="" class="simple" src="{{customer_img.customer_image1.url}}">
+                                        {{customer_img.name}}
+                                </span>
+                  </div>
+                </div>
+              </div>
+              
+
+
+<canvas id="myChart" width="400" height="400"></canvas>
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: "{{labels|safe}}",
+            data: "{{data|safe}}",
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%endif%} 
+
+</section>
+</section>
+{% endblock main-content %}

@@ -1,0 +1,66 @@
+{% extends 'app/dashbase.html' %}
+{% load static %}
+{% block title %}ABOUT US{% endblock title %}
+{% block main-content %}
+
+
+
+
+<section id="main-content">
+    <section class="wrapper">
+
+    
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about section-bg">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="section-title">
+           
+            <h2>Find Out More <span class="text-center">About Us</span></h2>
+            
+          </div>
+  
+          <div class="row  m-3 p-5 border">
+        {% for a in ab %}
+                
+              
+            <div class= "col-lg-6"  data-aos ="zoom-out" >
+              
+                
+            
+                 <img src="{{a.about_image1.url}}" height="320px" class="p-2" width="320px" alt="">
+                 
+  
+             </div>           
+            
+            <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center  p-2 " data-aos="fade-up" data-aos-delay="100">
+              <h3 class="text-wrap  text-uppercase">{{a.title}}</h3>
+              <p class="font-italic">{{a.Subject}}
+              </p>
+           
+              <p class="text-wrap  text-capitalize">
+               {{a.description}}
+              </p>
+             
+              
+            </div>
+            
+           {% endfor %}
+
+          
+          </div>
+        
+        </div>
+      </section>
+      <!-- End About Section -->
+  
+
+
+
+    </section>
+</section>
+
+
+
+
+{% endblock main-content %}

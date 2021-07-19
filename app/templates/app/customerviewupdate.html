@@ -1,0 +1,55 @@
+{% extends 'app/dashbase.html' %}
+{% load static %}
+{% block title %}Customer Profile Form {% endblock title %}
+{% block main-content %}
+ <!--main content start-->
+ <section id="main-content">
+    <section class="wrapper">
+
+ <div class="row text-capitalize ">
+  <div class="col-sm-8 offset-sm-3">
+   <h3 class="text-center  alert alert-info">Customer Profile information</h3>
+   <hr>
+{% if form%}
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">SR.NO</th>
+        <th scope="col">NAME</th>
+        <th scope="col">MOBILE</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">STATE</th>
+        <th scope="col">Controls</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for st in form%}  
+      <tr>
+        <td>{{forloop.counter}}</td>
+         <td scope="row">{{st.name}}</td>
+         <td>{{st.mobile}}</td>
+         <td>{{st.email}}</td>
+         <td>{{st.state}}</td>
+         <td>
+       <a href="{% url 'updatecustomeredit' st.id%}" class="btn btn-warning btn-sm">Edit</a>
+      
+    </td>
+      </tr>
+       {%endfor%}
+      
+    </tbody>
+  </table>
+    {%else%}
+   
+    <a href="{% url 'CustomerFormview' %}" class="btn btn-primary btn-lg btn-block  ">Add Your Detail</a>
+
+      <h4 class="text-center alert alert-danger">Otherwise You are not able to book any service!!</h4>
+{%endif%}
+  </div>
+
+ 
+
+</div>
+</section>
+</section>
+{% endblock main-content %}

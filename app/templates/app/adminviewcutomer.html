@@ -1,0 +1,93 @@
+{% extends 'app/dashbase.html' %}
+{% load static %}
+{% block title %}Customer Profile Form {% endblock title %}
+{% block main-content %}
+ <!--main content start-->
+ <section id="main-content">
+    <section class="wrapper">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+          <div class="info-box brown-bg">
+            <i class="fa fa-shopping-cart"></i>
+            
+            <div class="title">Total Number Of Customer</div>
+            <div class="count">{{customers}}</div>
+          </div>
+          <!--/.info-box-->
+        </div>
+
+
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+          <div class="info-box brown-bg">
+            <i class="fa fa-shopping-cart"></i>
+            
+            <div class="title">THe Customer who Take Order</div>
+            <div class="count">{{take_order}}</div>
+          </div>
+          <!--/.info-box-->
+        </div>
+
+
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-9 col-md-12 bg-white" >
+
+ <div class="row  ">
+  <div class="">
+   <h3 class="text-center  alert alert-info">Customer Profile information</h3>
+   <hr>
+{% if form%}
+   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">SR.NO</th>
+        <th scope="col">NAME</th>
+        <th scope="col">MOBILE</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">STATE</th>
+        <th scope="col">Controls</th>
+      </tr>
+    </thead>
+    <tbody>
+    {%for st in form%}  
+      <tr>
+        <td >{{forloop.counter}}</td>
+         <td scope="row" class="text-capitalize">{{st.name}}</td>
+         <td class="text-capitalize">{{st.mobile}}</td>
+         <td class="">{{st.email}}</td>
+         <td class="text-capitalize">{{st.state}}</td>
+         <td>
+       <a href="{% url 'updatecustomerbyadmin' st.id%}" class="btn btn-warning btn-sm">Edit</a>
+       <form action="{% url 'delcustomeredit'  st.id%}" method="POST" class="d-inline">
+           {% csrf_token %}
+       <input  type="submit" value="Delete" class="btn btn-danger btn-sm">
+      </form>
+    </td>
+      </tr>
+    {%endfor%}
+      
+    </tbody>
+  </table>
+    {%else%}
+   
+
+      <h4 class="text-center alert alert-danger">NO Recode Found!!</h4>
+{%endif%}
+  </div>
+
+ 
+
+</div>
+</div>
+<div class="col-md-3 bg-info">
+
+
+</div>
+
+</div>
+</section>
+</section>
+{% endblock main-content %}

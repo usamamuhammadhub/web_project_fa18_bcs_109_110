@@ -1,0 +1,53 @@
+
+{% extends 'app/dashbase.html' %}
+{% load static %}
+{% block title %}services{% endblock title %}
+{% block main-content %}
+
+
+
+ <!--main content start-->
+<section id="main-content">
+  <section class="wrapper">
+    
+   <div class="container my-5 ">
+        <div class="row">
+         <div class="col-lg-5 text-center align-self-center">
+            <!--- slider-->
+          <img src="{{service.Service_image1.url}}" width="600px" height="800px" alt="" class="img-fluid img-thumbnail">
+          
+          <img src="{{service.Service_image2.url}}" width="600px" height="800px" alt="" class="img-fluid img-thumbnail">
+         </div>
+         <div class="col-lg-5 offset-sm-1">
+          <h2>Service Title: {{service.title}}</h2>
+          <hr>
+          <p>Service Description: {{service.description }}</p> <br>
+          <h4>Rs. {{service.discounted_price}}<small class="fw-light text-decoration-line-through">{{service.selling_price}}</small></h4> <br>
+       {% if item_already_in_cart %}
+          <a href="{% url 'showcart' %}" class="btn btn-warning shadow px-5 py-2 ms-4">Go To Cart</a>
+        {% else%}
+  
+               <form action="/add-to-cart" class="d-inline">
+               <input type="hidden" name="ser_id" value={{service.id}} id="ser_id">
+               <button  type="submit" class="btn btn-primary shadow px-5 py-2">Add to Cart</button>
+                    <a href="{% url 'showcart' %}" class="btn btn-danger shadow px-5 py-2 ms-4">Buy Now</a>
+               </form>
+
+       {% endif %}
+
+<!--<a href="{% url 'add-to-cart' %}" class="btn btn-primary shadow px-5 py-2">Add to Cart</a>--> 
+
+ <h5 class="mt-5">Available Offers</h5>
+         
+          <ul>
+           <li>Bank Offer 5% Unlimited Cashback on Flipkart Axis Bank Credit</li>
+           <li>Special Price Get extra ₹3000 off (price inclusive of discount)</li>
+           <li>No cost EMI ₹1,667/month. Standard EMI also available</li>
+           <li>Partner Offer ₹2000 Flipkart Gift Card on Every 1000th Transaction with a new Visa Debit/Credit Card</li>
+          </ul>
+         </div>
+        </div>
+    </div>
+  </section>
+</section>
+{% endblock main-content %}

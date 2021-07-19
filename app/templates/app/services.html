@@ -1,0 +1,33 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Services{% endblock title %}
+{% block main-content %}
+
+
+
+
+      <!-- ======= Services Section ======= -->
+      <section id="services" class="services">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="section-title">
+            <h2>Services</h2>
+            <h3>Check our <span>Services</span></h3>
+            
+          </div>
+            <!-- Slider 1 -->
+  <div class="owl-carousel text-center text-capitalize " id="slider1">
+    {% for  b in sevices %}
+   <a href="{% url 'service-detail' b.id %}" class="btn"><div class="item "><img src="{{ b.Service_image2.url  }}" alt="" height="200px"><span class="fw-bold"><b>{{b.title}}</b></span><br><span class="fs-5">Rs.{{b.discounted_price}}<small>{{b.as_per}}</small></span></div></a>
+   
+   {% endfor %} 
+ </div>
+  
+
+      </div>
+    </section><!-- End Services Section -->
+
+    
+    {% endblock main-content %}
+
+

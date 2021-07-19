@@ -1,0 +1,70 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+
+
+{% block livesale %}
+<!-- Live Sale Section -->
+<div class="container">
+  <div class="row bg-danger text-center p-5 text-white border-bottom shadow">
+    <h1>SALE IS LIVE NOW</h1>
+    <span>5% Instant Discount on Axis Bank Credit and Debit Card</span>
+    <small class="fw-lighter">Term and Condition Applied (For details visit Bank's official Website)</small>
+  </div>
+</div> 
+<!-- End Live Sale Section -->
+{% endblock livesale %}
+
+{% block main-content %}
+<!-- 1st Product Slider -->
+<div class="m-3">
+ <h2>AWsons Deals of The Day</h2>
+ <!-- Slider 1 -->
+ <div class="owl-carousel" id="slider1">
+   {% for  b in as_perr %}
+  <a href="{% url 'service-detail' b.id %}" class="btn"><div class="item"><img src="{{ b.Service_image2.url  }}" alt="" height="200px"><span class="fw-bold"><b>{{b.title}}</b></span><br><span class="fs-5">Rs.{{b.discounted_price}}<small>/{{b.as_per}}</small></span></div></a>
+{% endfor %} 
+</div>
+  
+</div>
+<!-- End 1st Product Slider -->
+
+<!-- Payment Info Section -->
+<div class="container my-5">
+ <div class="row">
+  {%if customer %}
+    {% for i in  customer%}
+      <div class="col-sm-3">
+       <div class="card mb-3">
+        <div class="card-body">
+       <img src="{{ i.customer_image1.url }}" alt="" srcset="" class="img-fluid">
+        </div>
+        </div>
+      </div>
+    {%endfor%}
+  {%endif%}
+
+  
+ 
+ </div>
+</div>
+<!-- End Payment Info Section -->
+
+<!-- 2nd Product Slider -->
+
+
+<div class="m-3">
+  <h2>AWsons Deals of Per Squre F</h2>
+  <!-- Slider 1 -->
+  <div class="owl-carousel text-center text-capitalize " id="slider1">
+    {% for  b in fott %}
+   <a href="{% url 'service-detail' b.id %}" class="btn"><div class="item "><img src="{{ b.Service_image2.url  }}" alt="" height="200px"><span class="fw-bold"><b>{{b.title}}</b></span><br><span class="fs-5">Rs.{{b.discounted_price}}<small>{{b.as_per}}</small></span></div></a>
+   
+   {% endfor %} 
+ </div>
+   
+ </div>
+<!-- End 2nd Product Slider -->
+{% endblock main-content %}
+

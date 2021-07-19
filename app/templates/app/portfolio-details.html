@@ -1,0 +1,53 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block main-content %}
+
+
+<!-- 2nd Product Slider -->
+
+
+ <!-- ======= Testimonials Section ======= -->
+ <section id="testimonials" class="testimonials ">
+  <div class="container" data-aos="zoom-in">
+
+    <div class="owl-carousel testimonials-carousel ">
+
+      <div class="testimonial-item ">
+      {% for  b in as_perr %}
+        <a><img src="{{ b.Service_image2.url  }}" class="testimonial-img " alt=""></a>
+        <h3>{{b.title}}</h3>
+        <h4>{{b.discounted_price}}<small>/{{b.as_per}}</small></h4>
+        <p>
+          <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+         <p>{{b.description}}</p>
+          <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+        </p>
+        {% endfor %}
+      </div>
+
+      
+
+    </div>
+
+  </div>
+</section><!-- End Testimonials Section -->
+<div class="m-3">
+  <h2>ShoppingX Deals of The Day</h2>
+  <!-- Slider 1 -->
+  <div class="owl-carousel" id="slider1">
+   <a href="{% url 'product-detail' %}" class="btn"><div class="item"><img src="{% static 'app/images/product/1.jpg' %}" alt="" height="200px"><span class="fw-bold">Product 1</span><br><span class="fs-5">Rs. 500</span></div></a>
+  </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock main-content %}
